@@ -6,4 +6,4 @@ export const Route = createFileRoute('/habits/new')({
 
 function RouteComponent() {
   return <div>Hello "/habits/new"!</div>
-}
+} 
