@@ -1,9 +1,9 @@
 export type HabitStatus = "active" | "paused" | "completed";
 
 export type HabitCategory =
-  "health" | "productivity" | "mindfulness" | "learning" | "social";
+  "Gesundheit" | "Produktivität" | "Achtsamkeit" | "Lernen" | "Soziales";
 
-export type HabitFrequency = "daily" | "weekly" | "custom";
+export type HabitFrequency = "täglich" | "wöchentlich" | "individuell";
 
 export interface Habit {
   id: string;
