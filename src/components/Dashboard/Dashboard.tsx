@@ -9,7 +9,7 @@ const fakeHabits: Habit[] = [
     title: "Wasser trinken",
     description: "2L Wasser am Tag trinken",
     category: "Gesundheit",
-    status: "active",
+    status: "aktiv",
     createdAt: "2026-07-07T09:00:00.000Z",
     updatedAt: "2026-07-07T09:00:00.000Z",
     frequency: "täglich",
@@ -21,7 +21,7 @@ const fakeHabits: Habit[] = [
     title: "Lesen",
     description: "30 Minuten täglich lesen",
     category: "Lernen",
-    status: "paused",
+    status: "pausiert",
     createdAt: "2026-07-01T09:00:00.000Z",
     updatedAt: "2026-07-05T09:00:00.000Z",
     frequency: "täglich",
@@ -33,7 +33,7 @@ const fakeHabits: Habit[] = [
     title: "Meditation",
     description: "10 Minuten meditieren",
     category: "Achtsamkeit",
-    status: "completed",
+    status: "abgeschlossen",
     createdAt: "2026-06-01T09:00:00.000Z",
     updatedAt: "2026-07-07T09:00:00.000Z",
     frequency: "täglich",
@@ -51,9 +51,9 @@ export default function Dashboard() {
 
   // Statistiken
   const total = fakeHabits.length;
-  const active = fakeHabits.filter((habit) => habit.status === "active").length;
-  const paused = fakeHabits.filter((habit) => habit.status === "paused").length;
-  const completed = fakeHabits.filter((habit) => habit.status === "completed").length;
+  const active = fakeHabits.filter((habit) => habit.status === "aktiv").length;
+  const paused = fakeHabits.filter((habit) => habit.status === "pausiert").length;
+  const completed = fakeHabits.filter((habit) => habit.status === "abgeschlossen").length;
   const longestStreak = Math.max(...fakeHabits.map((habit) => habit.currentStreak));
 
   // Erst nach Status filtern, dann nach Suchbegriff filtern
