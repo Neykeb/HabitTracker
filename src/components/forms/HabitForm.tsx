@@ -67,6 +67,102 @@ export function HabitForm({
           </div>
         )}
       />
+      <form.Field
+        name="category"
+        children={(field) => (
+          <div>
+            <label htmlFor={field.name}>Category</label>
+            <select
+              id={field.name}
+              name={field.name}
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(event) =>
+                field.handleChange(
+                  event.target.value as typeof field.state.value,
+                )
+              }
+            >
+              <option value="health">Health</option>
+              <option value="learning">Learning</option>
+              <option value="fitness">Fitness</option>
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
+            </select>
+            {field.state.meta.errors.length > 0 && (
+              <p>{field.state.meta.errors.join(", ")}</p>
+            )}
+          </div>
+        )}
+      />
+      <form.Field
+        name="status"
+        children={(field) => (
+          <div>
+            <label htmlFor={field.name}>Status</label>
+            <select
+              id={field.name}
+              name={field.name}
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(event) =>
+                field.handleChange(
+                  event.target.value as typeof field.state.value,
+                )
+              }
+            >
+              <option value="active">Active</option>
+              <option value="paused"> Paused</option>
+              <option value="completed">Completed</option>
+            </select>
+            {field.state.meta.errors.length > 0 && (
+              <p>{field.state.meta.errors.join(", ")}</p>
+            )}
+          </div>
+        )}
+      />
+      <form.Field
+        name="targetPerWeek"
+        children={(field) => (
+          <div>
+            <label htmlFor={field.name}> Target Per Week</label>
+            <input
+              id={field.name}
+              name={field.name}
+              type="nuimber"
+              min="1"
+              max="7"
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(event) =>
+                field.handleChange(Number(event.target.value))
+              }
+            />
+            {field.state.meta.errors.length > 0 && (
+              <p>{field.state.meta.errors.join(", ")}</p>
+            )}
+          </div>
+        )}
+      />
+      <form.Field
+        name="reminderTime"
+        children={(field) => (
+          <div>
+            <label htmlFor={field.name}>Reminder time</label>
+            <input
+              id={field.name}
+              name={field.name}
+              type="time"
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(event) => field.handleChange(event.target.value)}
+            />
+            {field.state.meta.errors.length > 0 && (
+              <p>{field.state.meta.errors.join(", ")}</p>
+            )}
+          </div>
+        )}
+      />
       <button type="submit">{submitLabel}</button>
     </form>
   );
