@@ -5,7 +5,6 @@ import { routeTree } from './routeTree.gen'
 import './index.css'
 
 // Router erstellen mit allen Routen aus routeTree.gen.ts
-const router = createRouter({ routeTree })
 
 const router = createRouter({ routeTree });
 
