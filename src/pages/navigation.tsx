@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import logo from "../assets/HabitFlow1.svg";
-Link
+
 export function Navigation() {
   return (
     <>
@@ -28,16 +28,16 @@ export function Navigation() {
               <li>
                 <a>Dashboard</a>
               </li>
-              
-                <li>
-                  <a>Habits</a>
-                </li>
-                <li>
-                  <a>About</a>
-                </li>
-            
+
               <li>
-                <a>Item 3</a>
+                <a>Habits</a>
+              </li>
+              <li>
+                <Link to="/habits/new">New Habits</Link>
+              </li>
+
+              <li>
+                <a>About</a>
               </li>
             </ul>
           </div>
@@ -48,23 +48,16 @@ export function Navigation() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Item 1</a>
+              <a>Dashboard</a>
             </li>
             <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2 bg-base-100 w-40 z-1">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
+              <a>Habits</a>
             </li>
             <li>
-              <a>Item 3</a>
+              <Link to="/habits/new">New Habits</Link>
+            </li>
+            <li>
+              <a>About</a>
             </li>
           </ul>
         </div>
