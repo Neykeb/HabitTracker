@@ -17,21 +17,21 @@ export default function FilterBar({ activeFilter, onFilterChange }: FilterBarPro
       </button>
 
       <button
-        onClick={() => onFilterChange("active")}
+        onClick={() => onFilterChange("aktiv")}
         style={{ fontWeight: activeFilter === "active" ? "bold" : "normal" }}
       >
         Aktiv
       </button>
 
       <button
-        onClick={() => onFilterChange("paused")}
+        onClick={() => onFilterChange("pausiert")}
         style={{ fontWeight: activeFilter === "paused" ? "bold" : "normal" }}
       >
         Pausiert
       </button>
 
       <button
-        onClick={() => onFilterChange("completed")}
+        onClick={() => onFilterChange("abgeschlossen")}
         style={{ fontWeight: activeFilter === "completed" ? "bold" : "normal" }}
       >
         Abgeschlossen
