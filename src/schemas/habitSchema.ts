@@ -4,7 +4,7 @@ export const habitSchema = z.object({
   description: z.string().min(10, "Description must at least 10 characters"),
   category: z.enum(["health", "learning", "fitness", "work", "personal"]),
   status: z.enum(["active", "paused", "completed"]),
-  targetPerWeek: z.coerce
+  targetPerWeek: z
     .number()
     .min(1, "Target per week must be at least 1")
     .max(7, "Target per week cannot be more than 7"),
