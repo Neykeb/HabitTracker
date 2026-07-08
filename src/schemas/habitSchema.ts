@@ -13,5 +13,13 @@ export const habitSchema = z.object({
 });
 
 export type HabitFormData = z.infer<typeof habitSchema>;
+export const defaultHabitFormValues: HabitFormData = {
+  title: "",
+  description: "",
+  category: "health",
+  status: "active",
+  targetPerWeek: 1,
+  reminderTime: "18:00",
+};
 
 // HALLO TEAM

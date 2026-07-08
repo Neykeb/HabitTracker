@@ -7,7 +7,15 @@ import './index.css'
 // Router erstellen mit allen Routen aus routeTree.gen.ts
 const router = createRouter({ routeTree })
 
-createRoot(document.getElementById('root')!).render(
+const router = createRouter({ routeTree });
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     {/* RouterProvider ersetzt App - er kümmert sich um alle Seiten */}
     <RouterProvider router={router} />
