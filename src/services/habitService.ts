@@ -1,4 +1,4 @@
-import type { Habit, NewHabit } from "../types/habit";
+import type { Habit } from "../types/habit";
 
 const API_URL = "http://localhost:3001/habits";
 // Fake API Server - npm run server

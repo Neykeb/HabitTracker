@@ -84,10 +84,10 @@ export function HabitForm({
               }
             >
               <option value="Gesundheit">Gesundheit</option>
+              <option value="Produktivität">Produktivität</option>
+              <option value="Achtsamkeit">Achtsamkeit</option>
               <option value="Lernen">Lernen</option>
-              <option value="Fitness">Fitness</option>
-              <option value="Arbeit">Arbeit</option>
-              <option value="Privat">Personal</option>
+              <option value="Soziales">Soziales</option>
             </select>
             {field.state.meta.errors.length > 0 && (
               <p>{field.state.meta.errors.join(", ")}</p>
