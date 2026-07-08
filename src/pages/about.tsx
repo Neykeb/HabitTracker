@@ -1,0 +1,8 @@
+export function AboutSeite(){
+
+    return(
+        <>
+        
+        </>
+    )
+}
