@@ -1,9 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/habits/new')({
-  component: RouteComponent,
-})
+export const Route = createFileRoute("/habits/new")({
+  component: NewHabitPage,
+});
 
-function RouteComponent() {
-  return <div>Hello "/habits/new"!</div>
-} 
+function NewHabitPage() {
+  return <h1>Create Habit Test</h1>;
+}

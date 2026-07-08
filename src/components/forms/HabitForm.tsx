@@ -43,7 +43,7 @@ export function HabitForm({
               onBlur={field.handleBlur}
               onChange={(event) => field.handleChange(event.target.value)}
             />
-            {field.state.meta.errors.length < 0 && (
+            {field.state.meta.errors.length > 0 && (
               <p>{field.state.meta.errors.join(", ")}</p>
             )}
           </div>
@@ -112,7 +112,7 @@ export function HabitForm({
               }
             >
               <option value="active">Active</option>
-              <option value="paused"> Paused</option>
+              <option value="paused">Paused</option>
               <option value="completed">Completed</option>
             </select>
             {field.state.meta.errors.length > 0 && (
@@ -129,7 +129,7 @@ export function HabitForm({
             <input
               id={field.name}
               name={field.name}
-              type="nuimber"
+              type="number"
               min="1"
               max="7"
               value={field.state.value}
@@ -163,7 +163,15 @@ export function HabitForm({
           </div>
         )}
       />
-      <button type="submit">{submitLabel}</button>
+      <form.Subscribe
+        selector={(state) => [state.canSubmit, state.isSubmitting]}
+        children={([canSubmit, isSubmitting]) => (
+          <button type="submit" disabled={!canSubmit || isSubmitting}>
+            {" "}
+            {isSubmitting ? "saving..." : submitLabel}{" "}
+          </button>
+        )}
+      />
     </form>
   );
 }
