@@ -1,9 +1,23 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/habits/new')({
-  component: RouteComponent,
-})
+import { HabitForm } from "../../components/forms/HabitForm";
+import { defaultHabitFormValues } from "../../schemas/habitSchema";
 
-function RouteComponent() {
-  return <div>Hello "/habits/new"!</div>
-} 
+export const Route = createFileRoute("/habits/new")({
+  component: NewHabitPage,
+});
+
+function NewHabitPage() {
+  return (
+    <div>
+      <h1>Create Habit</h1>
+      <HabitForm
+        initialValues={defaultHabitFormValues}
+        submitLabel="Create Habit"
+        onSubmit={(values) => {
+          console.log("create habit", values);
+        }}
+      />
+    </div>
+  );
+}
