@@ -1,30 +1,39 @@
 import type { HabitStatus } from "../../types/habit";
 
-// Diese Props kommen später von Dashboard.tsx
 type FilterBarProps = {
-  // activeFilter ist der aktuell gewählte Filter z.B. "all" oder "active"
   activeFilter: string;
-  // onFilterChange wird aufgerufen wenn der User einen Button klickt
   onFilterChange: (filter: HabitStatus | "all") => void;
 };
 
 export default function FilterBar({ activeFilter, onFilterChange }: FilterBarProps) {
   return (
     <div>
-      {/* Jeder Button ruft onFilterChange mit seinem Wert auf */}
-      <button onClick={() => onFilterChange("all")}>
+      {/* style ändert sich wenn der Button aktiv ist */}
+      <button
+        onClick={() => onFilterChange("all")}
+        style={{ fontWeight: activeFilter === "all" ? "bold" : "normal" }}
+      >
         Alle
       </button>
 
-      <button onClick={() => onFilterChange("active")}>
+      <button
+        onClick={() => onFilterChange("active")}
+        style={{ fontWeight: activeFilter === "active" ? "bold" : "normal" }}
+      >
         Aktiv
       </button>
 
-      <button onClick={() => onFilterChange("paused")}>
+      <button
+        onClick={() => onFilterChange("paused")}
+        style={{ fontWeight: activeFilter === "paused" ? "bold" : "normal" }}
+      >
         Pausiert
       </button>
 
-      <button onClick={() => onFilterChange("completed")}>
+      <button
+        onClick={() => onFilterChange("completed")}
+        style={{ fontWeight: activeFilter === "completed" ? "bold" : "normal" }}
+      >
         Abgeschlossen
       </button>
     </div>
