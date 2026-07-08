@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ToDo Liste für mich
+toDo-josi.md
