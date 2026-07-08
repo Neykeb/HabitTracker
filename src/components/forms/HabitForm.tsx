@@ -83,11 +83,11 @@ export function HabitForm({
                 )
               }
             >
-              <option value="health">Health</option>
-              <option value="learning">Learning</option>
-              <option value="fitness">Fitness</option>
-              <option value="work">Work</option>
-              <option value="personal">Personal</option>
+              <option value="Gesundheit">Gesundheit</option>
+              <option value="Lernen">Lernen</option>
+              <option value="Fitness">Fitness</option>
+              <option value="Arbeit">Arbeit</option>
+              <option value="Privat">Personal</option>
             </select>
             {field.state.meta.errors.length > 0 && (
               <p>{field.state.meta.errors.join(", ")}</p>
@@ -111,9 +111,9 @@ export function HabitForm({
                 )
               }
             >
-              <option value="active">Active</option>
-              <option value="paused">Paused</option>
-              <option value="completed">Completed</option>
+              <option value="aktiv">Aktiv</option>
+              <option value="pausiert">Pausiert</option>
+              <option value="abgeschlossen">Abgeschlossen</option>
             </select>
             {field.state.meta.errors.length > 0 && (
               <p>{field.state.meta.errors.join(", ")}</p>
