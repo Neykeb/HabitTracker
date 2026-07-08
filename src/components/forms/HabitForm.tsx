@@ -122,6 +122,34 @@ export function HabitForm({
         )}
       />
       <form.Field
+        name="frequency"
+        children={(field) => (
+          <div>
+            <label htmlFor={field.name}>Häufigkeit</label>
+
+            <select
+              id={field.name}
+              name={field.name}
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(event) =>
+                field.handleChange(
+                  event.target.value as typeof field.state.value,
+                )
+              }
+            >
+              <option value="täglich">Täglich</option>
+              <option value="wöchentlich">Wöchentlich</option>
+              <option value="individuell">Individuell</option>
+            </select>
+
+            {field.state.meta.errors.length > 0 && (
+              <p>{field.state.meta.errors.join(", ")}</p>
+            )}
+          </div>
+        )}
+      />
+      <form.Field
         name="targetPerWeek"
         children={(field) => (
           <div>

@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 export const habitCategories = [
   "Gesundheit",
   "Produktivität",
@@ -6,16 +7,28 @@ export const habitCategories = [
   "Lernen",
   "Soziales",
 ] as const;
+
 export const habitStatuses = ["aktiv", "pausiert", "abgeschlossen"] as const;
+
+export const habitFrequencies = [
+  "täglich",
+  "wöchentlich",
+  "individuell",
+] as const;
+
 export const habitSchema = z.object({
   title: z.string().min(3, "Der Titel muss mindestens 3 Zeichen haben"),
 
   description: z
     .string()
     .min(10, "Die Beschreibung muss mindestens 10 Zeichen haben"),
+
   category: z.enum(habitCategories),
 
   status: z.enum(habitStatuses),
+
+  frequency: z.enum(habitFrequencies),
+
   targetPerWeek: z
     .number()
     .min(1, "Das Wochenziel muss mindestens 1 sein")
@@ -23,6 +36,7 @@ export const habitSchema = z.object({
 
   reminderTime: z.string().min(1, "Bitte eine Erinnerungszeit auswählen"),
 });
+
 export type HabitFormData = z.infer<typeof habitSchema>;
 
 export const defaultHabitFormValues: HabitFormData = {
@@ -30,6 +44,7 @@ export const defaultHabitFormValues: HabitFormData = {
   description: "",
   category: "Gesundheit",
   status: "aktiv",
+  frequency: "täglich",
   targetPerWeek: 1,
   reminderTime: "09:00",
 };
