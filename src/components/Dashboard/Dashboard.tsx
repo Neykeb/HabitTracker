@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Habit, HabitStatus } from "../../types/habit";
 import FilterBar from "../Filter/FilterBar";
+import SearchBar from "../Search/SearchBar";
 
 const fakeHabits: Habit[] = [
   {
@@ -42,8 +43,11 @@ const fakeHabits: Habit[] = [
 ];
 
 export default function Dashboard() {
-  // activeFilter speichert welcher Button gerade aktiv ist
+  // activeFilter speichert welcher Filter-Button aktiv ist
   const [activeFilter, setActiveFilter] = useState<HabitStatus | "all">("all");
+
+  // searchQuery speichert was der User ins Suchfeld tippt
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Statistiken
   const total = fakeHabits.length;
@@ -52,11 +56,13 @@ export default function Dashboard() {
   const completed = fakeHabits.filter((habit) => habit.status === "completed").length;
   const longestStreak = Math.max(...fakeHabits.map((habit) => habit.currentStreak));
 
-  // filteredHabits zeigt alle Habits wenn "all", sonst nur die passenden
-  const filteredHabits =
-    activeFilter === "all"
-      ? fakeHabits
-      : fakeHabits.filter((habit) => habit.status === activeFilter);
+  // Erst nach Status filtern, dann nach Suchbegriff filtern
+  const filteredHabits = fakeHabits
+    .filter((habit) => activeFilter === "all" || habit.status === activeFilter)
+    .filter((habit) =>
+      // toLowerCase() macht Groß/Kleinschreibung egal
+      habit.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   return (
     <div>
@@ -68,16 +74,24 @@ export default function Dashboard() {
       <p>Abgeschlossen: {completed}</p>
       <p>Längste Streak: {longestStreak} Tage</p>
 
-      {/* FilterBar bekommt den aktiven Filter und die Funktion zum Ändern */}
+      {/* Suchfeld */}
+      <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+
+      {/* Filter Buttons */}
       <FilterBar activeFilter={activeFilter} onFilterChange={setActiveFilter} />
 
-      {/* gefilterte Habits anzeigen */}
-      {filteredHabits.map((habit) => (
-        <div key={habit.id}>
-          <h3>{habit.title}</h3>
-          <p>{habit.status}</p>
-        </div>
-      ))}
+      {/* gefilterte und gesuchte Habits anzeigen */}
+      {filteredHabits.length === 0 ? (
+        // Empty State - wenn keine Habits gefunden wurden
+        <p>Keine Habits gefunden.</p>
+      ) : (
+        filteredHabits.map((habit) => (
+          <div key={habit.id}>
+            <h3>{habit.title}</h3>
+            <p>{habit.status}</p>
+          </div>
+        ))
+      )}
     </div>
   );
 }
