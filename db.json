@@ -1,0 +1,17 @@
+{
+  "habits": [
+    {
+      "id": "1",
+      "title": "Wasser trinken",
+      "description": "2L Wasser am Tag trinken",
+      "category": "Gesundheit",
+      "status": "active",
+      "createdAt": "2026-07-07T09:00:00.000Z",
+      "updatedAt": "2026-07-07T09:00:00.000Z",
+      "frequency": "täglich",
+      "targetPerWeek": 7,
+      "currentStreak": 4,
+      "reminderTime": "09:00"
+    }
+  ]
+}
