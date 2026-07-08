@@ -49,6 +49,24 @@ export function HabitForm({
           </div>
         )}
       />
+      <form.Field
+        name="description"
+        children={(field) => (
+          <div>
+            <label htmlFor={field.name}>Description</label>
+            <textarea
+              id={field.name}
+              name={field.name}
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(event) => field.handleChange(event.target.value)}
+            />
+            {field.state.meta.errors.length > 0 && (
+              <p>{field.state.meta.errors.join(", ")} </p>
+            )}
+          </div>
+        )}
+      />
       <button type="submit">{submitLabel}</button>
     </form>
   );
