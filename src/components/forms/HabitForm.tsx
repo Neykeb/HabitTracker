@@ -30,6 +30,25 @@ export function HabitForm({
       }}
     >
       <h2>Habit Form</h2>
+      <form.Field
+        name="title"
+        children={(field) => (
+          <div>
+            <label htmlFor={field.name}>Title</label>
+            <input
+              id={field.name}
+              name={field.name}
+              type="text"
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(event) => field.handleChange(event.target.value)}
+            />
+            {field.state.meta.errors.length < 0 && (
+              <p>{field.state.meta.errors.join(", ")}</p>
+            )}
+          </div>
+        )}
+      />
       <button type="submit">{submitLabel}</button>
     </form>
   );
