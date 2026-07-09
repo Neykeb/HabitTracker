@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { HabitForm } from "../../../components/forms/HabitForm";
 import type { HabitFormData } from "../../../schemas/habitSchema";
+import { useHabit } from "../../../hooks/useHabit";
 
 export const Route = createFileRoute("/habits/$habitId/edit")({
   component: EditHabitPage,
@@ -8,14 +9,22 @@ export const Route = createFileRoute("/habits/$habitId/edit")({
 
 function EditHabitPage() {
   const { habitId } = Route.useParams();
+  const { data: habit, isLoading, isError } = useHabit(habitId);
+  if (isLoading) {
+    return <p>Habit wird geladen...</p>;
+  }
+  if (isError || !habit) {
+    return <p>habit wurde nicht gefunden</p>;
+  }
+
   const initialValues: HabitFormData = {
-    title: "wasser trinken",
-    description: "Jeden Tag genug wasser trinken",
-    category: "Gesundheit",
-    status: "aktiv",
-    frequency: "täglich",
-    targetPerWeek: 7,
-    reminderTime: "09:00",
+    title: habit.title,
+    description: habit.description,
+    category: habit.category,
+    status: habit.status,
+    frequency: habit.frequency,
+    targetPerWeek: habit.targetPerWeek,
+    reminderTime: habit.reminderTime ?? "",
   };
   return (
     <div>
@@ -25,7 +34,7 @@ function EditHabitPage() {
         initialValues={initialValues}
         submitLabel="Habit speichern"
         onSubmit={(values) => {
-          console.log("Habit aktualieseren", values);
+          console.log("Habit aktualieseren", habitId, values);
         }}
       />
     </div>
