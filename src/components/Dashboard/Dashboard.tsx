@@ -2,7 +2,9 @@ import { useState } from "react";
 import type { Habit, HabitStatus } from "../../types/habit";
 import FilterBar from "../Filter/FilterBar";
 import SearchBar from "../Search/SearchBar";
+import { useTheme } from "../../context/ThemeContext";
 
+// Fake-Daten mit deutschen Status-Werten
 const fakeHabits: Habit[] = [
   {
     id: "1",
@@ -43,49 +45,76 @@ const fakeHabits: Habit[] = [
 ];
 
 export default function Dashboard() {
-  // activeFilter speichert welcher Filter-Button aktiv ist
-  const [activeFilter, setActiveFilter] = useState<HabitStatus | "all">("all");
+  // useTheme gibt uns dunkelModus und themWechseln aus dem Context
+  const { isDark, toggleTheme } = useTheme();
 
-  // searchQuery speichert was der User ins Suchfeld tippt
-  const [searchQuery, setSearchQuery] = useState("");
+  // aktiverFilter speichert welcher Filter-Button gerade aktiv ist
+  const [aktiverFilter, setAktiverFilter] = useState<HabitStatus | "all">("all");
 
-  // Statistiken
-  const total = fakeHabits.length;
-  const active = fakeHabits.filter((habit) => habit.status === "aktiv").length;
-  const paused = fakeHabits.filter((habit) => habit.status === "pausiert").length;
-  const completed = fakeHabits.filter((habit) => habit.status === "abgeschlossen").length;
-  const longestStreak = Math.max(...fakeHabits.map((habit) => habit.currentStreak));
+  // suchbegriff speichert was der User ins Suchfeld tippt
+  const [suchbegriff, setSuchbegriff] = useState("");
 
-  // Erst nach Status filtern, dann nach Suchbegriff filtern
-  const filteredHabits = fakeHabits
-    .filter((habit) => activeFilter === "all" || habit.status === activeFilter)
-    .filter((habit) =>
-      // toLowerCase() macht Groß/Kleinschreibung egal
-      habit.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+  // sortierung speichert wonach die Liste sortiert wird
+  const [sortierung, setSortierung] = useState<"neueste" | "streak">("neueste");
+
+  // Statistiken - zählt Habits nach Status
+  const gesamt = fakeHabits.length;
+  const aktiv = fakeHabits.filter((habit) => habit.status === "aktiv").length;
+  const pausiert = fakeHabits.filter((habit) => habit.status === "pausiert").length;
+  const abgeschlossen = fakeHabits.filter((habit) => habit.status === "abgeschlossen").length;
+
+  // Math.max findet die größte Zahl im currentStreak Array
+  const laengsteStreak = Math.max(...fakeHabits.map((habit) => habit.currentStreak));
+
+  // Erst nach Status filtern, dann nach Suchbegriff filtern, dann sortieren
+  const gefilterteHabits = fakeHabits
+    .filter((habit) => aktiverFilter === "all" || habit.status === aktiverFilter)
+    .filter((habit) => habit.title.toLowerCase().includes(suchbegriff.toLowerCase()))
+    .sort((a, b) => {
+      // wenn "neueste" gewählt ist, neuere zuerst
+      if (sortierung === "neueste") {
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      }
+      // wenn "streak" gewählt ist, höchste Streak zuerst
+      return b.currentStreak - a.currentStreak;
+    });
 
   return (
     <div>
       <h1>Dashboard</h1>
 
-      <p>Gesamt Habits: {total}</p>
-      <p>Aktiv: {active}</p>
-      <p>Pausiert: {paused}</p>
-      <p>Abgeschlossen: {completed}</p>
-      <p>Längste Streak: {longestStreak} Tage</p>
+      {/* Theme Toggle Button - wechselt zwischen Hell und Dunkel */}
+      <button onClick={toggleTheme}>
+        {isDark ? "☀️ Heller Modus" : "🌙 Dunkler Modus"}
+      </button>
+
+      {/* Statistiken */}
+      <p>Gesamt Habits: {gesamt}</p>
+      <p>Aktiv: {aktiv}</p>
+      <p>Pausiert: {pausiert}</p>
+      <p>Abgeschlossen: {abgeschlossen}</p>
+      <p>Längste Streak: {laengsteStreak} Tage</p>
 
       {/* Suchfeld */}
-      <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+      <SearchBar searchQuery={suchbegriff} onSearchChange={setSuchbegriff} />
 
       {/* Filter Buttons */}
-      <FilterBar activeFilter={activeFilter} onFilterChange={setActiveFilter} />
+      <FilterBar activeFilter={aktiverFilter} onFilterChange={setAktiverFilter} />
 
-      {/* gefilterte und gesuchte Habits anzeigen */}
-      {filteredHabits.length === 0 ? (
-        // Empty State - wenn keine Habits gefunden wurden
+      {/* Sortierung */}
+      <select
+        value={sortierung}
+        onChange={(e) => setSortierung(e.target.value as "neueste" | "streak")}
+      >
+        <option value="neueste">Neueste zuerst</option>
+        <option value="streak">Höchste Streak zuerst</option>
+      </select>
+
+      {/* Wenn keine Habits gefunden - leerer Zustand anzeigen */}
+      {gefilterteHabits.length === 0 ? (
         <p>Keine Habits gefunden.</p>
       ) : (
-        filteredHabits.map((habit) => (
+        gefilterteHabits.map((habit) => (
           <div key={habit.id}>
             <h3>{habit.title}</h3>
             <p>{habit.status}</p>

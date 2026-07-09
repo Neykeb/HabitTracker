@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
+import { ThemeProvider } from "./context/ThemeContext";
 import './index.css'
 
 // Router erstellen mit allen Routen aus routeTree.gen.ts
@@ -16,7 +17,9 @@ declare module "@tanstack/react-router" {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {/* RouterProvider ersetzt App - er kümmert sich um alle Seiten */}
+    <ThemeProvider>
+    {/* ThemeProvider umhüllt die ganze App - alle Komponenten haben jetzt Zugriff auf das Theme */}
     <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>,
 )
