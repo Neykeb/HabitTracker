@@ -11,6 +11,11 @@ export type NewHabit = Omit<
 >;
 // Omit = ohne id, createdAt usw. da diese vom System vergeben werden nicht vom User. (Gegenteil: Pick)
 
+export type UpdateHabit = Partial<NewHabit>;
+// Partial = macht alle Eigenschaften von NewHabit optional.
+// Warum? > Beim Aktualisieren (PATCH) schickt der Benutzer nur die Felder, die TATSÄCHLICH geändert wurden.
+// NewHabit = Hier sind es Pflichtfelder > UpdateHabit = Was möchtest du ändern User
+
 export interface Habit {
   id: string;
   title: string;
