@@ -26,7 +26,10 @@ export function Navigation() {
             </div>
             <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
               <li>
-                <a>Dashboard</a>
+                <Link to="/">Startseite</Link>
+              </li>
+              <li>
+                <Link to="/">Dashboard</Link>
               </li>
 
               <li>
@@ -37,18 +40,21 @@ export function Navigation() {
               </li>
 
               <li>
-                <a>About</a>
+                <Link to="/about">Über uns</Link>
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">
+          <Link to="/" className="focus:outline-none">
             <img src={logo} alt="logo" className="h-22 w-auto" />
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Dashboard</a>
+              <Link to="/">Startseite</Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
               <a>Habits</a>
@@ -57,7 +63,7 @@ export function Navigation() {
               <Link to="/habits/new">New Habits</Link>
             </li>
             <li>
-              <a>About</a>
+              <Link to="/about">Über uns</Link>
             </li>
           </ul>
         </div>
