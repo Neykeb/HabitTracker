@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { HabitForm } from "../../../components/forms/HabitForm";
 import type { HabitFormData } from "../../../schemas/habitSchema";
 import { useHabit } from "../../../hooks/useHabit";
+import { useUpdateHabit } from "../../../hooks/useUpdateHabit";
 
 export const Route = createFileRoute("/habits/$habitId/edit")({
   component: EditHabitPage,
@@ -9,7 +10,10 @@ export const Route = createFileRoute("/habits/$habitId/edit")({
 
 function EditHabitPage() {
   const { habitId } = Route.useParams();
+  const navigate = useNavigate();
+
   const { data: habit, isLoading, isError } = useHabit(habitId);
+  const updateHabitMutation = useUpdateHabit();
   if (isLoading) {
     return <p>Habit wird geladen...</p>;
   }
@@ -32,11 +36,25 @@ function EditHabitPage() {
       <p>Habit ID: {habitId}</p>
       <HabitForm
         initialValues={initialValues}
-        submitLabel="Habit speichern"
+        submitLabel={
+          updateHabitMutation.isPending
+            ? "Wird gespeichert..."
+            : "Habit speichern"
+        }
         onSubmit={(values) => {
-          console.log("Habit aktualieseren", habitId, values);
+          updateHabitMutation.mutate(
+            { id: habitId, habit: values },
+            {
+              onSuccess: () => {
+                navigate({ to: "/habits" });
+              },
+            },
+          );
         }}
       />
+      {updateHabitMutation.isError && (
+        <p>Habit konnte nicht aktualisiert werden.</p>
+      )}
     </div>
   );
 }
