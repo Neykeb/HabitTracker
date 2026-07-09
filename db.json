@@ -12,6 +12,33 @@
       "targetPerWeek": 7,
       "currentStreak": 4,
       "reminderTime": "09:00"
+    },
+    {
+      "title": "asasas",
+      "description": "saasasasasas",
+      "category": "Produktivität",
+      "status": "pausiert",
+      "frequency": "individuell",
+      "targetPerWeek": 1,
+      "reminderTime": "09:00",
+      "createdAt": "2026-07-09T13:16:02.719Z",
+      "updatedAt": "2026-07-09T13:16:02.719Z",
+      "currentStreak": 0,
+      "id": "S9v_WJEpXAE"
+    },
+    {
+      "title": "asasasas",
+      "description": "asasasasasas",
+      "category": "Gesundheit",
+      "status": "aktiv",
+      "frequency": "täglich",
+      "targetPerWeek": 1,
+      "reminderTime": "09:00",
+      "createdAt": "2026-07-09T13:32:06.157Z",
+      "updatedAt": "2026-07-09T13:32:06.157Z",
+      "currentStreak": 0,
+      "id": "aoo5eTtZjHw"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
