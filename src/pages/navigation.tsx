@@ -4,7 +4,7 @@ import logo from "../assets/HabitFlow1.svg";
 export function Navigation() {
   return (
     <>
-      <div className="navbar bg-gray-950 shadow-sm">
+      <div className="navbar bg-gray-950 text-white shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,12 +24,12 @@ export function Navigation() {
                 />{" "}
               </svg>
             </div>
-            <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+            <ul className="menu menu-sm dropdown-content bg-base-100 text-base-content rounded-box z-1 mt-3 w-52 p-2 shadow">
               <li>
                 <Link to="/">Startseite</Link>
               </li>
               <li>
-                <Link to="/">Dashboard</Link>
+                <Link to="/dashboard">Dashboard</Link>
               </li>
 
               <li>
