@@ -79,8 +79,10 @@ export function Navigation() {
           </ul>
         </div>
         <div className="navbar-end">
-            
-          <button onClick={toggleTheme} className="rounded-lg bg-slate-950 border border-[#1C6ADD] px-5 py-3 transition hover:bg-[#1C6ADD] hover:text-white">
+          <button
+            onClick={toggleTheme}
+            className="rounded-lg bg-slate-950 border border-[#1C6ADD] px-5 py-3 transition hover:bg-[#1C6ADD] hover:text-white"
+          >
             {isDark ? "☀️ " : "🌙 "}
           </button>
         </div>

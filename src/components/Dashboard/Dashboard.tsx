@@ -58,14 +58,15 @@ export default function Dashboard() {
             HabitFlow
           </p>
 
-          <h1 className="mt-2 text-5xl font-bold">Dashboard</h1>
+          {/* Theme Toggle Button - wechselt zwischen Hell und Dunkel */}
+          <button onClick={toggleTheme}>
+            {isDark ? "☀️ Heller Modus" : "🌙 Dunkler Modus"}
+          </button>
 
           <p className={isDark ? "mt-3 text-white/60" : "mt-3 text-black/60"}>
             Verwalte deine Gewohnheiten und verfolge deinen Fortschritt.
           </p>
         </div>
-
-         
       </div>
 
       {isLoading && <p>Habits werden geladen...</p>}
