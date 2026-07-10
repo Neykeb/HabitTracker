@@ -13,5 +13,6 @@
       "currentStreak": 4,
       "reminderTime": "09:00"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
