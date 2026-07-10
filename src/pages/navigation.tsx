@@ -3,7 +3,7 @@ import { useTheme } from "../context/ThemeContext";
 import logo from "../assets/HabitFlow1.svg";
 
 export function Navigation() {
-  const { isDark } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
 
   return (
     <>
