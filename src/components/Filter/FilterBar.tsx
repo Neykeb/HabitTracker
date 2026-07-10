@@ -1,7 +1,7 @@
 import type { HabitStatus } from "../../types/habit";
 
 type FilterBarProps = {
-  activeFilter: string;
+  activeFilter: HabitStatus | "all";
   onFilterChange: (filter: HabitStatus | "all") => void;
 };
 
@@ -18,21 +18,21 @@ export default function FilterBar({ activeFilter, onFilterChange }: FilterBarPro
 
       <button
         onClick={() => onFilterChange("aktiv")}
-        style={{ fontWeight: activeFilter === "active" ? "bold" : "normal" }}
+        style={{ fontWeight: activeFilter === "aktiv" ? "bold" : "normal" }}
       >
         Aktiv
       </button>
 
       <button
         onClick={() => onFilterChange("pausiert")}
-        style={{ fontWeight: activeFilter === "paused" ? "bold" : "normal" }}
+        style={{ fontWeight: activeFilter === "pausiert" ? "bold" : "normal" }}
       >
         Pausiert
       </button>
 
       <button
         onClick={() => onFilterChange("abgeschlossen")}
-        style={{ fontWeight: activeFilter === "completed" ? "bold" : "normal" }}
+        style={{ fontWeight: activeFilter === "abgeschlossen" ? "bold" : "normal" }}
       >
         Abgeschlossen
       </button>

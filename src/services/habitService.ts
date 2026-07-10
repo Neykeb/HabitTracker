@@ -1,13 +1,20 @@
 import type { Habit, NewHabit, UpdateHabit } from "../types/habit";
 
-const API_URL = "http://localhost:3001/habits";
+const API_URL = "/api/habits";
 // Fake API Server - npm run server
+
+async function throwApiError(response: Response, fallbackMessage: string): Promise<never> {
+  const errorText = await response.text();
+  throw new Error(
+    `${fallbackMessage} (${response.status} ${response.statusText})${errorText ? `: ${errorText}` : ""}`,
+  );
+}
 
 export async function getHabits(): Promise<Habit[]> {
   const response = await fetch(API_URL);
 
   if (!response.ok) {
-    throw new Error("Habits konnten nicht geladen werden.");
+    await throwApiError(response, "Habits konnten nicht geladen werden.");
   }
 
   return response.json();
@@ -18,7 +25,7 @@ export async function getHabitById(id: string): Promise<Habit> {
   const response = await fetch(`${API_URL}/${id}`);
 
   if (!response.ok) {
-    throw new Error("Habit konnte nicht geladen werden.");
+    await throwApiError(response, "Habit konnte nicht geladen werden.");
   }
 
   return response.json();
@@ -42,7 +49,7 @@ export async function createHabit(habit: NewHabit): Promise<Habit> {
   });
 
   if (!response.ok) {
-    throw new Error("Habit konnte nicht erstellt werden.");
+    await throwApiError(response, "Habit konnte nicht erstellt werden.");
   }
 
   return response.json();
@@ -65,7 +72,7 @@ export async function updateHabit(
   });
 
   if (!response.ok) {
-    throw new Error("Habit konnte nicht aktualisiert werden.");
+    await throwApiError(response, "Habit konnte nicht aktualisiert werden.");
   }
 
   return response.json();
@@ -78,6 +85,6 @@ export async function deleteHabit(id: string): Promise<void> {
   });
 
   if (!response.ok) {
-    throw new Error("Habit konnte nicht gelöscht werden.");
+    await throwApiError(response, "Habit konnte nicht gelöscht werden.");
   }
 }
