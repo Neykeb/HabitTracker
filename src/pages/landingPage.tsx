@@ -12,8 +12,6 @@ export function LandingPage() {
               alt="Motion Lines"
               className="
       w-[650px]
-      
-       
       scale-110
       object-cover
     "
