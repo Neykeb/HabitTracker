@@ -1,10 +1,17 @@
 import { Link } from "@tanstack/react-router";
+import { useTheme } from "../context/ThemeContext";
 import logo from "../assets/HabitFlow1.svg";
 
 export function Navigation() {
+  const { isDark, toggleTheme } = useTheme();
+
   return (
     <>
-      <div className="navbar bg-gray-950 text-white shadow-sm">
+      <div
+        className={`navbar shadow-sm ${
+          isDark ? "bg-gray-950 text-white" : "bg-white text-gray-950"
+        }`}
+      >
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,7 +31,11 @@ export function Navigation() {
                 />{" "}
               </svg>
             </div>
-            <ul className="menu menu-sm dropdown-content bg-base-100 text-base-content rounded-box z-1 mt-3 w-52 p-2 shadow">
+            <ul
+              className={`menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow ${
+                isDark ? "bg-gray-900 text-white" : "bg-white text-gray-950"
+              }`}
+            >
               <li>
                 <Link to="/">Startseite</Link>
               </li>
@@ -33,7 +44,7 @@ export function Navigation() {
               </li>
 
               <li>
-                <a>Habits</a>
+                <Link to="/habits">Habits</Link>
               </li>
               <li>
                 <Link to="/habits/new">New Habits</Link>
@@ -57,7 +68,7 @@ export function Navigation() {
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <a>Habits</a>
+              <Link to="/habits">Habits</Link>
             </li>
             <li>
               <Link to="/habits/new">New Habits</Link>
@@ -68,7 +79,12 @@ export function Navigation() {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <button
+            onClick={toggleTheme}
+            className="rounded-lg bg-slate-950 border border-[#1C6ADD] px-5 py-3 transition hover:bg-[#1C6ADD] hover:text-white"
+          >
+            {isDark ? "☀️ " : "🌙 "}
+          </button>
         </div>
       </div>
     </>

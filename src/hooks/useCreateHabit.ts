@@ -10,7 +10,7 @@ export function useCreateHabit() {
 
     onSuccess: () => {
       // Wenn das Erstellen erfolgreich war, aktualisiere die Habit-Liste.
-      queryClient.invalidateQueries({ queryKey: ["habits"] });
+      return queryClient.invalidateQueries({ queryKey: ["habits"] });
     },
     // Die Liste ["habits"] ist wahrscheinlich veraltet.Bitte neu laden.
   });

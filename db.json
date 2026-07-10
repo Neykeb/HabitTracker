@@ -67,4 +67,8 @@
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 373337c994fb2efeaf56e1d32a0ea149dbddcbad
