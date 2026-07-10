@@ -1,27 +1,33 @@
 import heroFoto from "../assets/heropage2.jpg";
 import { Link } from "@tanstack/react-router";
+import { useTheme } from "../context/ThemeContext";
+
 export function LandingPage() {
+  const { isDark } = useTheme();
+
   return (
-    <section className="min-h-screen overflow-hidden bg-[#000000] px-6 text-white">
+    <section
+      className={`min-h-screen overflow-hidden px-6 transition-colors duration-300 ${
+        isDark ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
       <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
         {/* Linke Seite */}
-        <div className="relative flex justify-center lg:justify-start">
-          <div className="relative flex justify-center lg:justify-start overflow-hidden">
-            <img
-              src={heroFoto}
-              alt="Motion Lines"
-              className="
-      w-[650px]
-      scale-110
-      object-cover
-    "
-            />
-          </div>
+        <div className="relative flex justify-center lg:justify-start overflow-hidden">
+          <img
+            src={heroFoto}
+            alt="Motion Lines"
+            className="w-40rem scale-110 object-cover"
+          />
         </div>
 
         {/* Rechte Seite */}
         <div className="text-center lg:text-left">
-          <p className="mb-12 text-sm font-black uppercase tracking-[0.45em] text-white/70">
+          <p
+            className={`mb-12 text-sm font-black uppercase tracking-[0.45em] ${
+              isDark ? "text-white/70" : "text-black/70"
+            }`}
+          >
             HabitFlow
           </p>
 
@@ -35,7 +41,11 @@ export function LandingPage() {
             </span>
           </h1>
 
-          <p className="mt-10 max-w-xl text-xl font-medium leading-relaxed text-white/60">
+          <p
+            className={`mt-10 max-w-xl text-xl  ${
+              isDark ? "text-white/60" : "text-black/60"
+            }`}
+          >
             Baue Gewohnheiten. Bleib dran.
             <br />
             Werde die beste Version von dir.
@@ -43,10 +53,10 @@ export function LandingPage() {
 
           <Link
             to="/dashboard"
-            className="group mt-10 inline-flex items-center gap-16 rounded-lg border border-[#1C6ADD] px-10 py-5 text-lg font-medium transition-all duration-300 hover:bg-[#1C6ADD]"
+            className="group mt-10 inline-flex items-center gap-16 rounded-lg border border-[#1C6ADD] px-10 py-5 text-lg font-medium transition hover:bg-[#1C6ADD] hover:text-white"
           >
             Jetzt starten
-            <span className="text-2xl text-[#1C6ADD] transition-all duration-300 group-hover:translate-x-2 group-hover:text-white">
+            <span className="text-2xl text-[#1C6ADD] transition duration-300 group-hover:translate-x-2 group-hover:text-white">
               →
             </span>
           </Link>
