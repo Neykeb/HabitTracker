@@ -11,28 +11,6 @@ export const Route = createFileRoute("/habits/new")({
 function NewHabitPage() {
   const navigate = useNavigate();
   const createHabitMutation = useCreateHabit();
-
-  return (
-    <div>
-      <h1>Neuen Habit erstellen</h1>
-      <HabitForm
-        initialValues={defaultHabitFormValues}
-        submitLabel={
-          createHabitMutation.isPending
-            ? "Wird gespeichert..."
-            : "Habit erstellen"
-        }
-        onSubmit={async (values) => {
-          await createHabitMutation.mutateAsync(values);
-          navigate({ to: "/dashboard" });
-        }}
-      />
-      {createHabitMutation.isError && (
-        <p>
-          Habit konnte nicht erstellt werden:{" "}
-          {createHabitMutation.error.message}
-        </p>
-      )}
   const { isDark } = useTheme();
 
   return (
@@ -64,19 +42,17 @@ function NewHabitPage() {
                 ? "Wird gespeichert..."
                 : "Habit erstellen"
             }
-            onSubmit={(values) => {
-              createHabitMutation.mutate(values, {
-                onSuccess: () => {
-                  navigate({ to: "/habits" });
-                },
-              });
+            onSubmit={async (values) => {
+              await createHabitMutation.mutateAsync(values);
+              navigate({ to: "/dashboard" });
             }}
           />
         </div>
 
         {createHabitMutation.isError && (
           <p className="mt-6 rounded-lg border border-red-500 p-4 text-red-500">
-            Habit konnte nicht erstellt werden.
+            Habit konnte nicht erstellt werden:{" "}
+            {createHabitMutation.error.message}
           </p>
         )}
       </div>

@@ -6,83 +6,52 @@ import { useTheme } from "../../context/ThemeContext";
 import { useHabits } from "../../hooks/useHabits";
 
 export default function Dashboard() {
-  // useTheme gibt uns dunkelModus und themWechseln aus dem Context
   const { isDark, toggleTheme } = useTheme();
   const { data: habits = [], isLoading, isError } = useHabits();
 
-  // aktiverFilter speichert welcher Filter-Button gerade aktiv ist
-  const [aktiverFilter, setAktiverFilter] = useState<HabitStatus | "all">("all");
-
-  // suchbegriff speichert was der User ins Suchfeld tippt
+  const [aktiverFilter, setAktiverFilter] = useState<HabitStatus | "all">(
+    "all",
+  );
   const [suchbegriff, setSuchbegriff] = useState("");
-
-  // sortierung speichert wonach die Liste sortiert wird
   const [sortierung, setSortierung] = useState<"neueste" | "streak">("neueste");
 
-  // Statistiken - zählt Habits nach Status
   const gesamt = habits.length;
   const aktiv = habits.filter((habit) => habit.status === "aktiv").length;
   const pausiert = habits.filter((habit) => habit.status === "pausiert").length;
-  const abgeschlossen = habits.filter((habit) => habit.status === "abgeschlossen").length;
+  const abgeschlossen = habits.filter(
+    (habit) => habit.status === "abgeschlossen",
+  ).length;
 
-  // Math.max findet die größte Zahl im currentStreak Array
   const laengsteStreak =
     habits.length > 0
       ? Math.max(...habits.map((habit) => habit.currentStreak))
       : 0;
 
-  // Erst nach Status filtern, dann nach Suchbegriff filtern, dann sortieren
   const gefilterteHabits = [...habits]
-    .filter((habit) => aktiverFilter === "all" || habit.status === aktiverFilter)
+    .filter(
+      (habit) => aktiverFilter === "all" || habit.status === aktiverFilter,
+    )
     .filter((habit) =>
       `${habit.title} ${habit.description} ${habit.category}`
         .toLowerCase()
         .includes(suchbegriff.toLowerCase()),
     )
     .sort((a, b) => {
-      // wenn "neueste" gewählt ist, neuere zuerst
       if (sortierung === "neueste") {
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
       }
-      // wenn "streak" gewählt ist, höchste Streak zuerst
+
       return b.currentStreak - a.currentStreak;
     });
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-
-      {/* Theme Toggle Button - wechselt zwischen Hell und Dunkel */}
-      <button onClick={toggleTheme}>
-        {isDark ? "☀️ Heller Modus" : "🌙 Dunkler Modus"}
-      </button>
-
-      {/* Statistiken */}
-      {isLoading && <p>Habits werden geladen...</p>}
-      {isError && <p>Habits konnten nicht geladen werden.</p>}
-
-      <p>Gesamt Habits: {gesamt}</p>
-      <p>Aktiv: {aktiv}</p>
-      <p>Pausiert: {pausiert}</p>
-      <p>Abgeschlossen: {abgeschlossen}</p>
-      <p>Längste Streak: {laengsteStreak} Tage</p>
-
-      {/* Suchfeld */}
-      <SearchBar searchQuery={suchbegriff} onSearchChange={setSuchbegriff} />
-
-      {/* Filter Buttons */}
-      <FilterBar activeFilter={aktiverFilter} onFilterChange={setAktiverFilter} />
-
-      {/* Sortierung */}
-      <select
-        value={sortierung}
-        onChange={(e) => setSortierung(e.target.value as "neueste" | "streak")}
     <div
       className={`min-h-screen px-8 py-10 transition-colors duration-300 ${
         isDark ? "bg-[#0a0a0a] text-white" : "bg-[#f5f5f5] text-black"
       }`}
     >
-      {/* Header */}
       <div className="mb-10 flex items-center justify-between">
         <div>
           <p className="text-sm uppercase tracking-[0.3em] text-[#1C6ADD]">
@@ -96,60 +65,25 @@ export default function Dashboard() {
           </p>
         </div>
 
-         
+        <button
+          onClick={toggleTheme}
+          className="rounded-lg border border-[#1C6ADD] px-4 py-2 transition hover:bg-[#1C6ADD] hover:text-white"
+        >
+          {isDark ? "Heller Modus" : "Dunkler Modus"}
+        </button>
       </div>
 
-      {/* Statistik */}
+      {isLoading && <p>Habits werden geladen...</p>}
+      {isError && <p>Habits konnten nicht geladen werden.</p>}
+
       <div className="mb-10 grid grid-cols-2 gap-5 md:grid-cols-5">
-        <div
-          className={`rounded-xl p-6 ${
-            isDark ? "bg-[#111111]" : "bg-white shadow"
-          }`}
-        >
-          <p className={isDark ? "text-white/50" : "text-black/50"}>Gesamt</p>
-          <h2 className="mt-2 text-3xl font-bold">{gesamt}</h2>
-        </div>
-
-        <div
-          className={`rounded-xl p-6 ${
-            isDark ? "bg-[#111111]" : "bg-white shadow"
-          }`}
-        >
-          <p className={isDark ? "text-white/50" : "text-black/50"}>Aktiv</p>
-          <h2 className="mt-2 text-3xl font-bold">{aktiv}</h2>
-        </div>
-
-        <div
-          className={`rounded-xl p-6 ${
-            isDark ? "bg-[#111111]" : "bg-white shadow"
-          }`}
-        >
-          <p className={isDark ? "text-white/50" : "text-black/50"}>Pausiert</p>
-          <h2 className="mt-2 text-3xl font-bold">{pausiert}</h2>
-        </div>
-
-        <div
-          className={`rounded-xl p-6 ${
-            isDark ? "bg-[#111111]" : "bg-white shadow"
-          }`}
-        >
-          <p className={isDark ? "text-white/50" : "text-black/50"}>Erledigt</p>
-          <h2 className="mt-2 text-3xl font-bold">{abgeschlossen}</h2>
-        </div>
-
-        <div
-          className={`rounded-xl p-6 ${
-            isDark ? "bg-[#111111]" : "bg-white shadow"
-          }`}
-        >
-          <p className={isDark ? "text-white/50" : "text-black/50"}>
-            Beste Streak
-          </p>
-          <h2 className="mt-2 text-3xl font-bold"> {laengsteStreak}</h2>
-        </div>
+        <StatCard title="Gesamt" value={gesamt} isDark={isDark} />
+        <StatCard title="Aktiv" value={aktiv} isDark={isDark} />
+        <StatCard title="Pausiert" value={pausiert} isDark={isDark} />
+        <StatCard title="Erledigt" value={abgeschlossen} isDark={isDark} />
+        <StatCard title="Beste Streak" value={laengsteStreak} isDark={isDark} />
       </div>
 
-      {/* Suche, Filter und Sortierung */}
       <div
         className={`mb-10 rounded-xl p-6 ${
           isDark ? "bg-[#111111]" : "bg-white shadow"
@@ -185,7 +119,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Habits */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {gefilterteHabits.length === 0 ? (
           <p
@@ -223,7 +156,7 @@ export default function Dashboard() {
                 }`}
               >
                 <span>{habit.category}</span>
-                <span> {habit.currentStreak}</span>
+                <span>{habit.currentStreak} Tage</span>
               </div>
 
               <button className="mt-6 w-full rounded-lg border border-[#1C6ADD] py-3 transition hover:bg-[#1C6ADD] hover:text-white">
@@ -233,6 +166,23 @@ export default function Dashboard() {
           ))
         )}
       </div>
+    </div>
+  );
+}
+
+type StatCardProps = {
+  title: string;
+  value: number;
+  isDark: boolean;
+};
+
+function StatCard({ title, value, isDark }: StatCardProps) {
+  return (
+    <div
+      className={`rounded-xl p-6 ${isDark ? "bg-[#111111]" : "bg-white shadow"}`}
+    >
+      <p className={isDark ? "text-white/50" : "text-black/50"}>{title}</p>
+      <h2 className="mt-2 text-3xl font-bold">{value}</h2>
     </div>
   );
 }
