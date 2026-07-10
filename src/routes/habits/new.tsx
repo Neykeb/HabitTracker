@@ -10,7 +10,7 @@ function NewHabitPage() {
   const createHabitMutation = useCreateHabit();
   return (
     <div>
-      <h1>Neuen Habit erstellen</h1>
+      <h1>Habit erstellen</h1>
       <HabitForm
         initialValues={defaultHabitFormValues}
         submitLabel={

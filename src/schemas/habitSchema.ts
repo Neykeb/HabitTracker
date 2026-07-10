@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const habitCategories = [
+export const habitKategorien = [
   "Gesundheit",
   "Produktivität",
   "Achtsamkeit",
@@ -23,7 +23,7 @@ export const habitSchema = z.object({
     .string()
     .min(10, "Die Beschreibung muss mindestens 10 Zeichen haben"),
 
-  category: z.enum(habitCategories),
+  category: z.enum(habitKategorien),
 
   status: z.enum(habitStatuses),
 
