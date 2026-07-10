@@ -3,7 +3,7 @@ import { useTheme } from "../context/ThemeContext";
 import logo from "../assets/HabitFlow1.svg";
 
 export function Navigation() {
-  const { isDark } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
 
   return (
     <>
@@ -79,7 +79,10 @@ export function Navigation() {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+            
+          <button onClick={toggleTheme} className="rounded-lg border border-[#1C6ADD] px-5 py-3 transition hover:bg-[#1C6ADD] hover:text-white">
+            {isDark ? "☀️ Hell" : "🌙 Dunkel"}
+          </button>
         </div>
       </div>
     </>
