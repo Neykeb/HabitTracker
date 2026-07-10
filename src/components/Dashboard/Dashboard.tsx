@@ -65,12 +65,7 @@ export default function Dashboard() {
           </p>
         </div>
 
-        <button
-          onClick={toggleTheme}
-          className="rounded-lg border border-[#1C6ADD] px-4 py-2 transition hover:bg-[#1C6ADD] hover:text-white"
-        >
-          {isDark ? "Heller Modus" : "Dunkler Modus"}
-        </button>
+         
       </div>
 
       {isLoading && <p>Habits werden geladen...</p>}
