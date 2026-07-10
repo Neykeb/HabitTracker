@@ -1,8 +1,15 @@
-export function Footer(){
+import { useTheme } from "../context/ThemeContext";
 
-    return (
-      <>
-        <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10">
+export function Footer() {
+  const { isDark } = useTheme();
+
+  return (
+    <>
+      <footer
+        className={`footer footer-horizontal footer-center rounded p-10 ${
+          isDark ? "bg-gray-950 text-white" : "bg-gray-100 text-gray-950"
+        }`}
+      >
           <nav className="grid grid-flow-col gap-4">
             <a className="link link-hover">Dashboard</a>
             <a className="link link-hover">Habits</a>
@@ -16,7 +23,7 @@ export function Footer(){
               von ACME Industries GmbH.
             </p>
           </aside>
-        </footer>
-      </>
-    );
+      </footer>
+    </>
+  );
 }
