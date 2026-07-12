@@ -5,5 +5,5 @@ export const Route = createFileRoute('/habits/')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/habits/"!</div>
+  return <div>Hier findest du die neu erstellten Habits. </div>
 }

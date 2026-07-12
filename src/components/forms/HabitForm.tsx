@@ -48,45 +48,59 @@ export function HabitForm({
     }
   }
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <h2>Habit Form</h2>
+return (
+  <form
+    onSubmit={handleSubmit}
+    className="mx-auto  space-y-6 "
+  >
+    {/* <h2 className="text-3xl font-bold text-[#1C6ADD]">Habit Form</h2> */}
 
-      <div>
-        <label htmlFor="title">Title</label>
-        <input
-          id="title"
-          name="title"
-          type="text"
-          value={values.title}
-          onChange={(event) =>
-            setValues((currentValues) => ({
-              ...currentValues,
-              title: event.target.value,
-            }))
-          }
-        />
-        {errors.title && <p>{errors.title}</p>}
-      </div>
+    <div className="space-y-2">
+      <label htmlFor="title" className="font-medium text-gray-700">
+        Title
+      </label>
+      <input
+        id="title"
+        name="title"
+        type="text"
+        value={values.title}
+        onChange={(event) =>
+          setValues((currentValues) => ({
+            ...currentValues,
+            title: event.target.value,
+          }))
+        }
+        className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none transition focus:border-[#1C6ADD] focus:ring-2 focus:ring-[#1C6ADD]/20"
+      />
+      {errors.title && <p className="text-sm text-red-500">{errors.title}</p>}
+    </div>
 
-      <div>
-        <label htmlFor="description">Description</label>
-        <textarea
-          id="description"
-          name="description"
-          value={values.description}
-          onChange={(event) =>
-            setValues((currentValues) => ({
-              ...currentValues,
-              description: event.target.value,
-            }))
-          }
-        />
-        {errors.description && <p>{errors.description}</p>}
-      </div>
+    <div className="space-y-2">
+      <label htmlFor="description" className="font-medium text-gray-700">
+        Description
+      </label>
+      <textarea
+        id="description"
+        name="description"
+        value={values.description}
+        onChange={(event) =>
+          setValues((currentValues) => ({
+            ...currentValues,
+            description: event.target.value,
+          }))
+        }
+        className="min-h-32 w-full rounded-lg border border-gray-300 px-4 py-2 outline-none transition focus:border-[#1C6ADD] focus:ring-2 focus:ring-[#1C6ADD]/20"
+      />
+      {errors.description && (
+        <p className="text-sm text-red-500">{errors.description}</p>
+      )}
+    </div>
 
-      <div>
-        <label htmlFor="category">Category</label>
+    <div className="grid gap-6 md:grid-cols-2">
+      <div className="space-y-2">
+        <label htmlFor="category" className="font-medium text-gray-700">
+          Category
+        </label>
         <select
           id="category"
           name="category"
@@ -97,6 +111,7 @@ export function HabitForm({
               category: event.target.value as HabitFormData["category"],
             }))
           }
+          className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none transition focus:border-[#1C6ADD] focus:ring-2 focus:ring-[#1C6ADD]/20"
         >
           <option value="Gesundheit">Gesundheit</option>
           <option value="Produktivität">Produktivität</option>
@@ -104,11 +119,15 @@ export function HabitForm({
           <option value="Lernen">Lernen</option>
           <option value="Soziales">Soziales</option>
         </select>
-        {errors.category && <p>{errors.category}</p>}
+        {errors.category && (
+          <p className="text-sm text-red-500">{errors.category}</p>
+        )}
       </div>
 
-      <div>
-        <label htmlFor="status">Status</label>
+      <div className="space-y-2">
+        <label htmlFor="status" className="font-medium text-gray-700">
+          Status
+        </label>
         <select
           id="status"
           name="status"
@@ -119,16 +138,21 @@ export function HabitForm({
               status: event.target.value as HabitFormData["status"],
             }))
           }
+          className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none transition focus:border-[#1C6ADD] focus:ring-2 focus:ring-[#1C6ADD]/20"
         >
           <option value="aktiv">Aktiv</option>
           <option value="pausiert">Pausiert</option>
           <option value="abgeschlossen">Abgeschlossen</option>
         </select>
-        {errors.status && <p>{errors.status}</p>}
+        {errors.status && (
+          <p className="text-sm text-red-500">{errors.status}</p>
+        )}
       </div>
 
-      <div>
-        <label htmlFor="frequency">Häufigkeit</label>
+      <div className="space-y-2">
+        <label htmlFor="frequency" className="font-medium text-gray-700">
+          Frequency
+        </label>
         <select
           id="frequency"
           name="frequency"
@@ -139,16 +163,21 @@ export function HabitForm({
               frequency: event.target.value as HabitFormData["frequency"],
             }))
           }
+          className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none transition focus:border-[#1C6ADD] focus:ring-2 focus:ring-[#1C6ADD]/20"
         >
           <option value="täglich">Täglich</option>
           <option value="wöchentlich">Wöchentlich</option>
           <option value="individuell">Individuell</option>
         </select>
-        {errors.frequency && <p>{errors.frequency}</p>}
+        {errors.frequency && (
+          <p className="text-sm text-red-500">{errors.frequency}</p>
+        )}
       </div>
 
-      <div>
-        <label htmlFor="targetPerWeek">Target Per Week</label>
+      <div className="space-y-2">
+        <label htmlFor="targetPerWeek" className="font-medium text-gray-700">
+          Target Per Week
+        </label>
         <input
           id="targetPerWeek"
           name="targetPerWeek"
@@ -162,12 +191,17 @@ export function HabitForm({
               targetPerWeek: Number(event.target.value),
             }))
           }
+          className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none transition focus:border-[#1C6ADD] focus:ring-2 focus:ring-[#1C6ADD]/20"
         />
-        {errors.targetPerWeek && <p>{errors.targetPerWeek}</p>}
+        {errors.targetPerWeek && (
+          <p className="text-sm text-red-500">{errors.targetPerWeek}</p>
+        )}
       </div>
 
-      <div>
-        <label htmlFor="reminderTime">Reminder time</label>
+      <div className="space-y-2 md:col-span-2">
+        <label htmlFor="reminderTime" className="font-medium text-gray-700">
+          Reminder Time
+        </label>
         <input
           id="reminderTime"
           name="reminderTime"
@@ -179,13 +213,21 @@ export function HabitForm({
               reminderTime: event.target.value,
             }))
           }
+          className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none transition focus:border-[#1C6ADD] focus:ring-2 focus:ring-[#1C6ADD]/20"
         />
-        {errors.reminderTime && <p>{errors.reminderTime}</p>}
+        {errors.reminderTime && (
+          <p className="text-sm text-red-500">{errors.reminderTime}</p>
+        )}
       </div>
+    </div>
 
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "saving..." : submitLabel}
-      </button>
-    </form>
-  );
+    <button
+      type="submit"
+      disabled={isSubmitting}
+      className="w-full rounded-lg bg-[#1C6ADD] px-6 py-3 font-semibold text-white transition hover:bg-[#1658B8] disabled:cursor-not-allowed disabled:opacity-60"
+    >
+      {isSubmitting ? "Saving..." : submitLabel}
+    </button>
+  </form>
+);
 }
