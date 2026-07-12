@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useHabits } from "../../hooks/useHabits";
 export const Route = createFileRoute("/habits/")({
-  component: HabitOverviePage,
+  component: HabitOverviewPage,
 });
 
-function HabitOverviePage() {
+function HabitOverviewPage() {
   const { data: habits = [], isLoading, isError } = useHabits();
   if (isLoading) {
     return <p>Habits werden geladen...</p>;
@@ -24,13 +24,12 @@ function HabitOverviePage() {
             <p>{habit.description} </p>
             <p> Kategorie: {habit.category} </p>
             <p> Status: {habit.status} </p>
-            <p>Häufigkeit: {habit.status} </p>
+            <p>Häufigkeit: {habit.frequency} </p>
             <p> Ziel pro Woche: {habit.targetPerWeek} </p>
             <p> Erinnerungszeit: {habit.reminderTime} </p>
-            <Link
-              to="/habits/$habitId/edit"
-              params={{ habitId: habit.id }}
-            ></Link>
+            <Link to="/habits/$habitId/edit" params={{ habitId: habit.id }}>
+              Habit Bearbeiten
+            </Link>
           </li>
         ))}
       </ul>

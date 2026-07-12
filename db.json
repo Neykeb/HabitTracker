@@ -64,11 +64,33 @@
       "updatedAt": "2026-07-10T07:07:39.953Z",
       "currentStreak": 0,
       "id": "HSg818jqjAw"
+    },
+    {
+      "title": "hi hallo",
+      "description": "hi halli hallo",
+      "category": "Gesundheit",
+      "status": "aktiv",
+      "frequency": "täglich",
+      "targetPerWeek": 1,
+      "reminderTime": "09:00",
+      "createdAt": "2026-07-10T11:31:27.193Z",
+      "updatedAt": "2026-07-10T11:31:27.193Z",
+      "currentStreak": 0,
+      "id": "pIG95kkfHnk"
+    },
+    {
+      "title": "genug essen",
+      "description": "mind 1 KG pro tag zunehmen",
+      "category": "Gesundheit",
+      "status": "aktiv",
+      "frequency": "täglich",
+      "targetPerWeek": 7,
+      "reminderTime": "09:00",
+      "createdAt": "2026-07-12T22:49:10.527Z",
+      "updatedAt": "2026-07-12T22:49:10.527Z",
+      "currentStreak": 0,
+      "id": "Qk_hecLl8Dw"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 373337c994fb2efeaf56e1d32a0ea149dbddcbad
