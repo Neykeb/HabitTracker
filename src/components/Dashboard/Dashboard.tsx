@@ -1,12 +1,12 @@
 import { useState } from "react";
 import type { HabitStatus } from "../../types/habit";
-import FilterBar from "../Filter/FilterBar";
+import FilterBar from "../filter/FilterBar";
 import SearchBar from "../Search/SearchBar";
 import { useTheme } from "../../context/ThemeContext";
 import { useHabits } from "../../hooks/useHabits";
 
 export default function Dashboard() {
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark } = useTheme();
   const { data: habits = [], isLoading, isError } = useHabits();
 
   const [aktiverFilter, setAktiverFilter] = useState<HabitStatus | "all">(
@@ -58,10 +58,7 @@ export default function Dashboard() {
             HabitFlow
           </p>
 
-          {/* Theme Toggle Button - wechselt zwischen Hell und Dunkel */}
-          <button onClick={toggleTheme}>
-            {isDark ? "☀️ Heller Modus" : "🌙 Dunkler Modus"}
-          </button>
+          
 
           <p className={isDark ? "mt-3 text-white/60" : "mt-3 text-black/60"}>
             Verwalte deine Gewohnheiten und verfolge deinen Fortschritt.

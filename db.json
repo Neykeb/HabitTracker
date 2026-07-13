@@ -14,82 +14,30 @@
       "reminderTime": "09:00"
     },
     {
-      "title": "asasas",
-      "description": "saasasasasas",
-      "category": "Produktivität",
-      "status": "pausiert",
-      "frequency": "individuell",
-      "targetPerWeek": 1,
-      "reminderTime": "09:00",
-      "createdAt": "2026-07-09T13:16:02.719Z",
-      "updatedAt": "2026-07-09T13:16:02.719Z",
-      "currentStreak": 0,
-      "id": "S9v_WJEpXAE"
-    },
-    {
-      "title": "asasasas",
-      "description": "asasasasasas",
+      "title": "afdadsf",
+      "description": "esdfsdfsffwea",
       "category": "Gesundheit",
       "status": "aktiv",
       "frequency": "täglich",
       "targetPerWeek": 1,
       "reminderTime": "09:00",
-      "createdAt": "2026-07-09T13:32:06.157Z",
-      "updatedAt": "2026-07-09T13:32:06.157Z",
+      "createdAt": "2026-07-10T11:33:25.226Z",
+      "updatedAt": "2026-07-10T11:33:25.226Z",
       "currentStreak": 0,
-      "id": "aoo5eTtZjHw"
+      "id": "XHMuD7ay9Co"
     },
     {
-      "title": "wasser trinken",
-      "description": "jeden tag genug wasser trinken",
-      "category": "Gesundheit",
-      "status": "aktiv",
-      "frequency": "täglich",
-      "targetPerWeek": 7,
-      "reminderTime": "09:00",
-      "createdAt": "2026-07-09T13:35:52.078Z",
-      "updatedAt": "2026-07-09T13:35:52.078Z",
-      "currentStreak": 0,
-      "id": "NmxXKitwIxk"
-    },
-    {
-      "title": "asasasasffg",
-      "description": "gasdfasfawdf",
+      "title": "sdfasdfasdf",
+      "description": "adfsadfsdfasdfsdf",
       "category": "Gesundheit",
       "status": "aktiv",
       "frequency": "täglich",
       "targetPerWeek": 1,
       "reminderTime": "09:00",
-      "createdAt": "2026-07-10T07:07:39.953Z",
-      "updatedAt": "2026-07-10T07:07:39.953Z",
+      "createdAt": "2026-07-13T06:31:32.353Z",
+      "updatedAt": "2026-07-13T06:31:32.353Z",
       "currentStreak": 0,
-      "id": "HSg818jqjAw"
-    },
-    {
-      "title": "hi hallo",
-      "description": "hi halli hallo",
-      "category": "Gesundheit",
-      "status": "aktiv",
-      "frequency": "täglich",
-      "targetPerWeek": 1,
-      "reminderTime": "09:00",
-      "createdAt": "2026-07-10T11:31:27.193Z",
-      "updatedAt": "2026-07-10T11:31:27.193Z",
-      "currentStreak": 0,
-      "id": "pIG95kkfHnk"
-    },
-    {
-      "title": "genug essen",
-      "description": "mind 1 KG pro tag zunehmen",
-      "category": "Gesundheit",
-      "status": "aktiv",
-      "frequency": "täglich",
-      "targetPerWeek": 7,
-      "reminderTime": "09:00",
-      "createdAt": "2026-07-12T22:49:10.527Z",
-      "updatedAt": "2026-07-12T22:49:10.527Z",
-      "currentStreak": 0,
-      "id": "Qk_hecLl8Dw"
+      "id": "kgfITm7ZXPM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
