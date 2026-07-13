@@ -6,7 +6,7 @@ import { useTheme } from "../../context/ThemeContext";
 import { useHabits } from "../../hooks/useHabits";
 
 export default function Dashboard() {
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark } = useTheme();
   const { data: habits = [], isLoading, isError } = useHabits();
 
   const [aktiverFilter, setAktiverFilter] = useState<HabitStatus | "all">(

@@ -67,7 +67,7 @@ return (
           isDark ? "font-medium text-gray-200" : "font-medium text-gray-700"
         }
       >
-        Title
+        Titel
       </label>
 
       <input
@@ -98,7 +98,7 @@ return (
           isDark ? "font-medium text-gray-200" : "font-medium text-gray-700"
         }
       >
-        Description
+        Beschreibung
       </label>
 
       <textarea
@@ -131,7 +131,7 @@ return (
             isDark ? "font-medium text-gray-200" : "font-medium text-gray-700"
           }
         >
-          Category
+          Kategorie
         </label>
 
         <select
@@ -241,7 +241,7 @@ return (
             isDark ? "font-medium text-gray-200" : "font-medium text-gray-700"
           }
         >
-          Target Per Week
+          Ziel pro Woche
         </label>
 
         <input
@@ -276,8 +276,7 @@ return (
         className={
           isDark ? "font-medium text-gray-200" : "font-medium text-gray-700"
         }
-      >
-        Reminder Time
+      >Erinnerung
       </label>
 
       <input
