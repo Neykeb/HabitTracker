@@ -55,7 +55,7 @@ return (
   <form
     onSubmit={handleSubmit}
     className={`mx-auto max-w-2xl space-y-6 transition-colors ${
-      isDark ? "bg-gray-900 text-white" : "bg-white text-gray-900"
+      isDark ? " text-white" : "bg-white text-gray-900"
     }`}
   >
     <h2 className="text-3xl font-bold text-[#1C6ADD]">Habit Form</h2>
